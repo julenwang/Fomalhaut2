@@ -22,9 +22,9 @@ public class SevenZipArchiver: Archiver {
           return false
         }
         let path = entry.path.lowercased()
-        return path.hasSuffix(".jpg") || path.hasSuffix(".jpeg") || path.hasSuffix(".png")
-          || path.hasSuffix(".gif") || path.hasSuffix(".bmp") || path.hasSuffix(".tif") || path.hasSuffix(".tiff")
-          || path.hasSuffix(".webp")
+        return ArchiverImage.supportedExtensions.contains { ext in
+          path.hasSuffix(".\(ext)")
+        }
       }
       self.operationQueue = OperationQueue()
       self.operationQueue.maxConcurrentOperationCount = 1

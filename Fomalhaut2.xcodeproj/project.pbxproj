@@ -20,6 +20,7 @@
 		CE4641B625EA7F91004F0F0D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CE4641B525EA7F91004F0F0D /* RxCocoa */; };
 		CE4641B825EA7F91004F0F0D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE4641B725EA7F91004F0F0D /* RxSwift */; };
 		CE4641CA25EB6E45004F0F0D /* CollectionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4641C925EB6E45004F0F0D /* CollectionOrder.swift */; };
+		CE53D8CE2D7DE0870013806A /* ArchiverImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE53D8CD2D7DE0870013806A /* ArchiverImage.swift */; };
 		CE654D762537E9530051D575 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CE654D752537E9520051D575 /* Credits.rtf */; };
 		CE7A1C58271A7B9800177824 /* SevenZipArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A1C57271A7B9800177824 /* SevenZipArchiver.swift */; };
 		CE7CD508256A0B7B00C97167 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7CD507256A0B7B00C97167 /* Collection.swift */; };
@@ -173,6 +174,7 @@
 		CE38432125F4E19900262E4E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FilterList.strings; sourceTree = "<group>"; };
 		CE4309562904E85B00560957 /* Realm+ThreadLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+ThreadLocal.swift"; sourceTree = "<group>"; };
 		CE4641C925EB6E45004F0F0D /* CollectionOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionOrder.swift; sourceTree = "<group>"; };
+		CE53D8CD2D7DE0870013806A /* ArchiverImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiverImage.swift; sourceTree = "<group>"; };
 		CE654D752537E9520051D575 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		CE7A1C57271A7B9800177824 /* SevenZipArchiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenZipArchiver.swift; sourceTree = "<group>"; };
 		CE7CD507256A0B7B00C97167 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 				CE34A40825BBD75F00B4C0B5 /* PdfArchiver.swift */,
 				CE34A40E25BBD8EA00B4C0B5 /* RarArchiver.swift */,
 				CE7A1C57271A7B9800177824 /* SevenZipArchiver.swift */,
+				CE53D8CD2D7DE0870013806A /* ArchiverImage.swift */,
 				CEE4D7BC25E11B28003B8EB2 /* Info.plist */,
 				CEE4D7E025E11C13003B8EB2 /* Log.swift */,
 				CE34A41825BC105800B4C0B5 /* PageOrder.swift */,
@@ -670,6 +673,7 @@
 				CE46413C25EA19A7004F0F0D /* PageOrder.swift in Sources */,
 				CEE4D7E125E11C13003B8EB2 /* Log.swift in Sources */,
 				CEE4D7CC25E11B48003B8EB2 /* FolderArchiver.swift in Sources */,
+				CE53D8CE2D7DE0870013806A /* ArchiverImage.swift in Sources */,
 				CEE4D7CA25E11B48003B8EB2 /* PdfArchiver.swift in Sources */,
 				CEE4D7DB25E11BD7003B8EB2 /* ArchiverError.swift in Sources */,
 				CEE4D7CB25E11B48003B8EB2 /* RarArchiver.swift in Sources */,
