@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2020 mtgto <hogerappa@gmail.com>
 // SPDX-License-Identifier: GPL-3.0-only
 
-import React, { createContext } from "react";
+import { createContext } from "react";
 import { Book } from "./domain/book.ts";
 import { Collection } from "./domain/collection.ts";
 import { Filter } from "./domain/filter.ts";

@@ -34,7 +34,7 @@ const parseBook = (book: ApiBook): Book =>
     new Date(book.createdAt)
   );
 
-const App: React.FunctionComponent = () => {
+const App: React.FC = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [state, dispatch] = useReducer(reducer, initialState);
 
