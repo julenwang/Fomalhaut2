@@ -7,9 +7,18 @@
 /* Class = "NSViewController"; title = "Preferences..."; ObjectID = "CBA-p3-wd1"; Note = "Preferences..."; */
 "CBA-p3-wd1.title" = "環境設定…";
 
+/* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "ExP-FI-oYf"; */
+"ExP-FI-oYf.title" = "逆方向";
+
 /* Class = "NSTextFieldCell"; title = "Default Page Order"; ObjectID = "eZR-JX-E3r"; Note = "Default Page Order"; */
 "eZR-JX-E3r.title" = "デフォルトのページ順序";
 
+/* Class = "NSTextFieldCell"; title = "Scroll Direction"; ObjectID = "KyN-7O-6bF"; */
+"KyN-7O-6bF.title" = "スクロール方向";
+
 /* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "mQa-9D-KLh"; */
 "mQa-9D-KLh.title" = "右側が先";
+
+/* Class = "NSMenuItem"; title = "Prefer System Settings"; ObjectID = "pWq-oQ-8BF"; */
+"pWq-oQ-8BF.title" = "システム設定に追従";
 

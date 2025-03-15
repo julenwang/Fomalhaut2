@@ -46,6 +46,7 @@
 		CEB2DA52253E9384002C3F7E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2DA51253E9384002C3F7E /* Filter.swift */; };
 		CEB2DA62253EF85D002C3F7E /* Book.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB2DA64253EF85D002C3F7E /* Book.storyboard */; };
 		CEB2DA69253FE6DB002C3F7E /* FilterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2DA68253FE6DB002C3F7E /* FilterListView.swift */; };
+		CEBEE74B2D8528D500C73B6D /* ScrollDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEE74A2D8528D500C73B6D /* ScrollDirection.swift */; };
 		CEC1EA00257514FA0052228E /* BookCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC1EA02257514FA0052228E /* BookCollection.storyboard */; };
 		CECC07192549C6C700CF56FA /* BookDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC07172549C6C700CF56FA /* BookDocument.swift */; };
 		CECC0740254E8D6200CF56FA /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC073F254E8D6200CF56FA /* Schema.swift */; };
@@ -203,6 +204,7 @@
 		CEB2DA51253E9384002C3F7E /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		CEB2DA63253EF85D002C3F7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Book.storyboard; sourceTree = "<group>"; };
 		CEB2DA68253FE6DB002C3F7E /* FilterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListView.swift; sourceTree = "<group>"; };
+		CEBEE74A2D8528D500C73B6D /* ScrollDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDirection.swift; sourceTree = "<group>"; };
 		CEC1EA01257514FA0052228E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BookCollection.storyboard; sourceTree = "<group>"; };
 		CEC1EA042575151A0052228E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/BookCollection.strings; sourceTree = "<group>"; };
 		CECC07172549C6C700CF56FA /* BookDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDocument.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				CEA994842560E06400B8BCC6 /* Localizable.strings */,
 				CE4309562904E85B00560957 /* Realm+ThreadLocal.swift */,
 				CEEF12D62A4BD923008F22DC /* BookViewStyle.swift */,
+				CEBEE74A2D8528D500C73B6D /* ScrollDirection.swift */,
 			);
 			path = Fomalhaut2;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				CE9DCB9625720C490024FB1B /* CollectionContent.swift in Sources */,
 				CEEFC63B257C9590008D9636 /* WebSharing.swift in Sources */,
 				CE9EE62825330EE100B5AF5C /* ImageCache.swift in Sources */,
+				CEBEE74B2D8528D500C73B6D /* ScrollDirection.swift in Sources */,
 				CEB2DA0425399693002C3F7E /* Book.swift in Sources */,
 				CEE9793D25403AD500A35C39 /* MainWindowController.swift in Sources */,
 				CEEFC66B25810C24008D9636 /* WebSharingViewController.swift in Sources */,

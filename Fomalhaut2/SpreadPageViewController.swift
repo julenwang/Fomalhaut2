@@ -411,9 +411,17 @@ class SpreadPageViewController: NSViewController {
         }
       } else {
         if self.swipeDeltaY < -50 {
-          self.backwardPage()
+          if Preferences.standard.isReverseScrollDirection {
+            self.backwardPage()
+          } else {
+            self.forwardPage()
+          }
         } else if swipeDeltaY > 50 {
-          self.forwardPage()
+          if Preferences.standard.isReverseScrollDirection {
+            self.forwardPage()
+          } else {
+            self.backwardPage()
+          }
         }
       }
       self.swipeDeltaX = 0

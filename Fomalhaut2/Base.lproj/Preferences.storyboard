@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="FfR-gF-BLU">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="FfR-gF-BLU">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23094"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,9 +43,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="LRL-bG-fBE">
-                                <rect key="frame" x="113" y="96" width="255" height="78"/>
+                                <rect key="frame" x="81" y="83" width="319" height="104"/>
                                 <rows>
                                     <gridRow id="fnb-KD-ddb"/>
+                                    <gridRow id="AyE-WV-inC"/>
                                     <gridRow id="J9O-1z-BhJ"/>
                                     <gridRow id="fvd-yj-T2Y"/>
                                 </rows>
@@ -55,8 +56,8 @@
                                 </columns>
                                 <gridCells>
                                     <gridCell row="fnb-KD-ddb" column="Hkb-Su-qNq" id="BBt-zE-k32">
-                                        <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eUU-rE-8oK">
-                                            <rect key="frame" x="-2" y="58" width="120" height="16"/>
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eUU-rE-8oK">
+                                            <rect key="frame" x="-2" y="84" width="120" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Default Page Order" id="eZR-JX-E3r">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -69,7 +70,7 @@
                                     </gridCell>
                                     <gridCell row="fnb-KD-ddb" column="iYf-cN-Li2" id="Wia-Hn-kdU">
                                         <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P5Z-mq-dHc">
-                                            <rect key="frame" x="145" y="54" width="114" height="25"/>
+                                            <rect key="frame" x="145" y="80" width="114" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Right to Left" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="mQa-9D-KLh" id="Ieg-LH-CJn">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="message"/>
@@ -89,8 +90,36 @@
                                             </connections>
                                         </popUpButton>
                                     </gridCell>
+                                    <gridCell row="AyE-WV-inC" column="Hkb-Su-qNq" id="rfR-LC-EOP">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aEx-hg-p4v">
+                                            <rect key="frame" x="-2" y="58" width="97" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Scroll Direction" id="KyN-7O-6bF">
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="AyE-WV-inC" column="iYf-cN-Li2" id="nra-E4-H14">
+                                        <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6FV-9d-K1J">
+                                            <rect key="frame" x="145" y="54" width="178" height="25"/>
+                                            <popUpButtonCell key="cell" type="push" title="Prefer System Settings" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="pWq-oQ-8BF" id="ybY-MS-90C">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="xfc-3U-Kkd">
+                                                    <items>
+                                                        <menuItem title="Prefer System Settings" state="on" id="pWq-oQ-8BF"/>
+                                                        <menuItem title="Reverse" id="ExP-FI-oYf"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <action selector="selectScrollDirection:" target="CBA-p3-wd1" id="WXs-85-eVt"/>
+                                            </connections>
+                                        </popUpButton>
+                                    </gridCell>
                                     <gridCell row="J9O-1z-BhJ" column="Hkb-Su-qNq" id="Ecn-nm-eHX">
-                                        <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lzy-UT-Uhi">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lzy-UT-Uhi">
                                             <rect key="frame" x="-2" y="36" width="146" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Keep First Window Size" id="9AO-Av-hky">
                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -129,6 +158,7 @@
                     </attributedString>
                     <connections>
                         <outlet property="pageOrderPopupButton" destination="P5Z-mq-dHc" id="Vsc-EZ-BWb"/>
+                        <outlet property="scrollDirectionPopupButton" destination="6FV-9d-K1J" id="nuJ-jO-xTh"/>
                     </connections>
                 </viewController>
                 <customObject id="L75-i2-ert" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
