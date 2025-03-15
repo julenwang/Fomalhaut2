@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RxSwiftCommunity/RxRealm.git",
       "state" : {
-        "revision" : "fafdc8209b64a2d5ba22437a86532872bdb1efe3",
-        "version" : "5.0.6"
+        "revision" : "267cc8b587a5d5c74b57105050f9838cf20e2541",
+        "version" : "5.1.0"
       }
     },
     {
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReactiveX/RxSwift.git",
       "state" : {
-        "revision" : "9dcaa4b333db437b0fbfaf453fad29069044a8b4",
-        "version" : "6.6.0"
+        "revision" : "5dd1907d64f0d36f158f61a466bab75067224893",
+        "version" : "6.9.0"
       }
     },
     {
@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mtgto/Unrar.swift.git",
       "state" : {
-        "revision" : "e0ea3a392ca5cde6eb74a5a835c4684b724b2289",
-        "version" : "0.4.0"
+        "revision" : "1112f3124eae0d9b962b0c26c9817c251917c62e",
+        "version" : "0.4.1"
       }
     },
     {
@@ -104,8 +104,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/DaveWoodCom/XCGLogger.git",
       "state" : {
-        "revision" : "a9c4667b247928a29bdd41be2ec2c8d304215a54",
-        "version" : "7.0.1"
+        "revision" : "4def3c1c772ca90ad5e7bfc8ac437c3b0b4276cf",
+        "version" : "7.1.5"
       }
     },
     {
