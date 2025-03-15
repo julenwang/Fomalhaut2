@@ -22,6 +22,7 @@ const Page = (
     book: Book;
     history: History;
     refs: RefObject<HTMLElement[]>;
+    loading: HTMLImageElement["loading"];
     onClick: (e: React.MouseEvent) => void;
   }>
 ) => {
@@ -45,7 +46,7 @@ const Page = (
     <Box
       ref={setRefs}
       component="img"
-      loading="lazy" // TODO: Load first 3 pages
+      loading={props.loading}
       my={1}
       mx="auto"
       display="block"
@@ -59,6 +60,7 @@ const Page = (
 };
 
 const pages = (
+  currentPageIndex: number,
   book: Book,
   history: History,
   refs: RefObject<HTMLElement[]>
@@ -81,6 +83,7 @@ const pages = (
       book={book}
       history={history}
       refs={refs}
+      loading={Math.abs(currentPageIndex - i) <= 1 ? "eager" : "lazy"}
       onClick={(e) => onClick(e, i)}
     />
   ));
@@ -89,19 +92,21 @@ const pages = (
 const VerticalBookView = (props: Props) => {
   const refs = useRef<HTMLElement[]>([]);
   const history = useHistory();
+  const pageIndexRaw = parseInt(location.hash.substring(1));
+  const pageIndex = isNaN(pageIndexRaw) ? 0 : pageIndexRaw;
 
   useEffect(() => {
-    const pageIndex = parseInt(location.hash.substring(1));
-    if (!isNaN(pageIndex) && refs.current && refs.current[pageIndex]) {
+    if (pageIndex !== 0 && refs.current && refs.current[pageIndex]) {
       refs.current[pageIndex].scrollIntoView();
     } else if (refs.current && refs.current[0]) {
       refs.current[0].scrollIntoView();
     }
-  }, [props.book]);
+    // DO NOT add pageIndex because it stops goFirst halfway
+  }, [props.book]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Box mx="auto">
-      {pages(props.book, history, refs)}
+      {pages(pageIndex, props.book, history, refs)}
       <Box
         display="flex"
         flexDirection="column"
