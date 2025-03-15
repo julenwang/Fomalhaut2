@@ -166,39 +166,45 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
             <SpeedDialAction
               onClick={handleScrollToTop}
               icon={<KeyboardArrowUpIcon />}
-              tooltipTitle={message.commands.scrollToTop}
+              slotProps={{ tooltip: { title: message.commands.scrollToTop } }}
             />
             <SpeedDialAction
               onClick={handleToggleLike}
-              FabProps={{ disabled: calling }}
               icon={book?.like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-              tooltipTitle={
-                book?.like ? message.commands.dislike : message.commands.like
-              }
+              slotProps={{
+                tooltip: {
+                  title: book?.like
+                    ? message.commands.dislike
+                    : message.commands.like,
+                },
+                fab: { disabled: calling },
+              }}
             />
             <SpeedDialAction
               onClick={handleAddToCollection}
               icon={<BookmarkAddIcon />}
-              tooltipTitle={message.commands.addToCollection}
+              slotProps={{
+                tooltip: { title: message.commands.addToCollection },
+              }}
             />
             {nextBookId ? (
               <SpeedDialAction
                 onClick={handleNext}
                 icon={<SkipNextIcon />}
-                tooltipTitle={message.commands.next}
+                slotProps={{ tooltip: { title: message.commands.next } }}
               />
             ) : null}
             {prevBookId ? (
               <SpeedDialAction
                 onClick={handlePrev}
                 icon={<SkipPreviousIcon />}
-                tooltipTitle={message.commands.prev}
+                slotProps={{ tooltip: { title: message.commands.prev } }}
               />
             ) : null}
             <SpeedDialAction
               onClick={handleGoFirst}
               icon={<VerticalAlignTopIcon />}
-              tooltipTitle={message.commands.goFirst}
+              slotProps={{ tooltip: { title: message.commands.goFirst } }}
             />
           </SpeedDial>
           <AddToCollection
