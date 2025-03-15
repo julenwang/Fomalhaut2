@@ -174,9 +174,9 @@ class PreviewViewController: NSViewController, QLPreviewingController {
         }
       } else {
         if self.swipeDeltaY < -50 {
-          self.backwardPage()
-        } else if swipeDeltaY > 50 {
           self.forwardPage()
+        } else if swipeDeltaY > 50 {
+          self.backwardPage()
         }
       }
       self.swipeDeltaX = 0
