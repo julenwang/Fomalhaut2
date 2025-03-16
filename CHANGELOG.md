@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## v1.9.0 (2025-03-16)
+
+### Added
+
+- Support AVIF (macOS 13 or later) (#14)
+- Support JPEG XL (macOS 15 or later) (#14)
+- Preload next image in web
+
+### Changed
+
+- Fix scroll direction is opposite system settings (#15)
+- Update RxSwift to v6.9.0
+- Update RxRealm to v5.1.0
+- Update Unrar.swift to v0.4.1
+- Update XCGLogger to v7.1.5
+- Update web packages
+
 ## v1.8.0 (2025-02-15)
 
 ### Added
