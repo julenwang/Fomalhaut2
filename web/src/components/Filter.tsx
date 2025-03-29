@@ -3,8 +3,8 @@
 
 import { useContext, useEffect } from "react";
 import { useNavigate } from "rocon/react";
-import { Book } from "../domain/book.ts";
-import { Filter } from "../domain/filter.ts";
+import type { Book } from "../domain/book.ts";
+import type { Filter } from "../domain/filter.ts";
 import { message } from "../message.ts";
 import { setCurrentList, StateContext } from "../reducer.ts";
 import Library from "./Library.tsx";

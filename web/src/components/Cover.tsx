@@ -10,7 +10,7 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { forwardRef, useMemo } from "react";
 import { Link as RouterLink } from "rocon/react";
-import { Book } from "../domain/book.ts";
+import type { Book } from "../domain/book.ts";
 import { bookRoutes } from "./Routes.tsx";
 
 type Props = {

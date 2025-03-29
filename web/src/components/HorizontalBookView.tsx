@@ -3,10 +3,10 @@
 
 import Box from "@mui/material/Box";
 import type { History } from "history";
-import { RefObject, useEffect, useRef } from "react";
+import { useEffect, useRef, type RefObject } from "react";
 import { useInView } from "react-intersection-observer";
 import { useHistory } from "rocon/react";
-import { Book } from "../domain/book.ts";
+import type { Book } from "../domain/book.ts";
 import NavigationPage from "./NavigationPage.tsx";
 
 type Props = Readonly<{

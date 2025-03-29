@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Pagination from "@mui/material/Pagination";
 import Typography from "@mui/material/Typography";
-import { Book } from "../domain/book.ts";
+import type { Book } from "../domain/book.ts";
 import Cover from "./Cover.tsx";
 import Layout from "./Layout.tsx";
 

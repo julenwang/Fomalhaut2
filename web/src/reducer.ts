@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { createContext } from "react";
-import { Book } from "./domain/book.ts";
-import { Collection } from "./domain/collection.ts";
+import type { Book } from "./domain/book.ts";
+import type { Collection } from "./domain/collection.ts";
 import { Filter } from "./domain/filter.ts";
 import { message } from "./message.ts";
 

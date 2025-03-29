@@ -6,7 +6,7 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { Book } from "../domain/book.ts";
+import type { Book } from "../domain/book.ts";
 import { message } from "../message.ts";
 
 type Props = Readonly<{

@@ -6,7 +6,7 @@ import type { History } from "history";
 import { RefObject, useCallback, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { useHistory } from "rocon/react";
-import { Book } from "../domain/book";
+import type { Book } from "../domain/book";
 import NavigationPage from "./NavigationPage";
 
 type Props = Readonly<{
