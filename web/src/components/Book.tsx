@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2020 mtgto <hogerappa@gmail.com>
 // SPDX-License-Identifier: GPL-3.0-only
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useTransition } from "react";
 import { useNavigate } from "rocon/react";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -15,7 +15,7 @@ import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import { useTheme } from "@mui/material/styles";
-import { Book } from "../domain/book.ts";
+import type { Book } from "../domain/book.ts";
 import { message } from "../message.ts";
 import { StateContext, toggleLike } from "../reducer.ts";
 import HorizontalBookView from "./HorizontalBookView.tsx";
@@ -29,7 +29,7 @@ type Props = {
 };
 
 const BookPage: React.FunctionComponent<Props> = (props: Props) => {
-  const [calling, setCalling] = useState(false);
+  const [calling, startToggleLike] = useTransition();
   const [speedDialOpen, setSpeedDialOpen] = useState(false);
   const [addToCollectionOpen, setAddToCollectionOpen] = useState(false);
   const [reading, setReading] = useState(true);
@@ -65,21 +65,20 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     setSpeedDialOpen(false);
   };
 
-  const handleToggleLike = async () => {
-    if (book) {
-      setCalling(true);
-      try {
-        await fetch(
-          `/api/v1/books/${book.id}/${book.like ? "dislike" : "like"}`,
-          { method: "POST" }
-        );
-        dispatch(toggleLike(book.id));
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setCalling(false);
+  const handleToggleLike = () => {
+    startToggleLike(async () => {
+      if (book) {
+        try {
+          await fetch(
+            `/api/v1/books/${book.id}/${book.like ? "dislike" : "like"}`,
+            { method: "POST" }
+          );
+          dispatch(toggleLike(book.id));
+        } catch (error) {
+          console.error(error);
+        }
       }
-    }
+    });
   };
 
   const handleAddToCollection = () => {

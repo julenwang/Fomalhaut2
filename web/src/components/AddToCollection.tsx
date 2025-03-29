@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useTransition } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -8,7 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { addBookToCollection, StateContext } from "../reducer";
 import { message } from "../message";
-import { Collection } from "../domain/collection";
+import type { Collection } from "../domain/collection";
 
 type Props = {
   readonly bookId: string;
@@ -20,22 +20,21 @@ export const AddToCollection: React.FunctionComponent<Props> = (
   props: Props
 ) => {
   const { state, dispatch } = useContext(StateContext);
-  const [calling, setCalling] = useState(false);
+  const [calling, startAddition] = useTransition();
 
-  const handleAddToCollection = async (collection: Collection) => {
-    setCalling(true);
-    try {
-      await fetch(`/api/v1/collections/${collection.id}`, {
-        method: "POST",
-        body: JSON.stringify({ bookId: props.bookId }),
-      });
-      dispatch(addBookToCollection(props.bookId, collection.id));
-      props.onClose();
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setCalling(false);
-    }
+  const handleAddToCollection = (collection: Collection) => {
+    startAddition(async () => {
+      try {
+        await fetch(`/api/v1/collections/${collection.id}`, {
+          method: "POST",
+          body: JSON.stringify({ bookId: props.bookId }),
+        });
+        dispatch(addBookToCollection(props.bookId, collection.id));
+        props.onClose();
+      } catch (error) {
+        console.error(error);
+      }
+    });
   };
 
   return (
