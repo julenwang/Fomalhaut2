@@ -22,7 +22,6 @@ const CollectionPage: React.FunctionComponent<Props> = (props: Props) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (collection) {
-      document.title = `${collection.name} - Fomalhaut2`;
       dispatch(setCurrentList(collection.bookIds));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

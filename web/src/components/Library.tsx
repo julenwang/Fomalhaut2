@@ -31,6 +31,7 @@ const Library: React.FunctionComponent<Props> = (props: Props) => {
   );
   return (
     <Layout id={props.id}>
+      <title>{`${props.title} - Fomalhaut2`}</title>
       <Container maxWidth="md">
         <Box my={4}>
           <Typography variant="h4" component="h1" gutterBottom>

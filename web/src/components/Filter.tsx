@@ -26,7 +26,6 @@ const FilterPage: React.FunctionComponent<Props> = (props: Props) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (filter) {
-      document.title = `${filter.name} - Fomalhaut2`;
       dispatch(setCurrentList(books.map((book) => book.id)));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

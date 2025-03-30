@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2020 mtgto <hogerappa@gmail.com>
 // SPDX-License-Identifier: GPL-3.0-only
 
-import { useContext, useEffect, useState, useTransition } from "react";
+import { useContext, useState, useTransition } from "react";
 import { useNavigate } from "rocon/react";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -123,15 +123,10 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     }
   };
 
-  useEffect(() => {
-    if (book) {
-      document.title = `${book.name} - Fomalhaut2`;
-    }
-  }, [book]);
-
   if (book) {
     return (
       <Layout title={book.name}>
+        <title>{`${book?.name ?? 'Loading…'} - Fomalhaut2`}</title>
         <Container maxWidth="md">
           {state.viewMode === "left" || state.viewMode === "right" ? (
             <HorizontalBookView
