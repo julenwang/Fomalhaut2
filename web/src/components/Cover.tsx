@@ -8,7 +8,6 @@ import CardMedia from "@mui/material/CardMedia";
 import { pink } from "@mui/material/colors";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { forwardRef, useMemo } from "react";
 import { Link as RouterLink } from "rocon/react";
 import type { Book } from "../domain/book.ts";
 import { bookRoutes } from "./Routes.tsx";
@@ -18,20 +17,8 @@ type Props = {
 };
 
 const Cover: React.FunctionComponent<Props> = (props: Props) => {
-  const BookLink = useMemo(
-    () =>
-      // eslint-disable-next-line react/display-name
-      forwardRef((linkProps, _ref) => (
-        <RouterLink
-          route={bookRoutes.anyRoute}
-          match={{ id: props.book.id }}
-          {...linkProps}
-        ></RouterLink>
-      )),
-    [props.book.id]
-  );
   return (
-    <Link component={BookLink}>
+    <Link component={RouterLink<{ id: string }>} route={bookRoutes.anyRoute} match={{ id: props.book.id }}>
       <Card
         variant="outlined"
         sx={{ height: "100%", position: "relative" }}
