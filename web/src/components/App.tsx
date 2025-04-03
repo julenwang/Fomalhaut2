@@ -105,14 +105,14 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <StateContext.Provider value={{ state, dispatch }}>
+      <StateContext value={{ state, dispatch }}>
         <CssBaseline />
         <RoconRoot>
           <NoSsr>
             <Routes />
           </NoSsr>
         </RoconRoot>
-      </StateContext.Provider>
+      </StateContext>
     </ThemeProvider>
   );
 };
