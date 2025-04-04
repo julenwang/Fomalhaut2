@@ -6,9 +6,9 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { addBookToCollection, StateContext } from "../reducer";
-import { message } from "../message";
-import type { Collection } from "../domain/collection";
+import { addBookToCollection, StateContext } from "../reducer.ts";
+import { message } from "../message.ts";
+import type { Collection } from "../domain/collection.ts";
 
 type Props = {
   readonly bookId: string;

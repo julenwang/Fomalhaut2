@@ -27,9 +27,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import {
-  Fragment,
-  FunctionComponent,
-  PropsWithChildren,
   useContext,
   useEffect,
   useState,
@@ -37,9 +34,9 @@ import {
 import { useLocation, useNavigate } from "rocon/react";
 import { message } from "../message.ts";
 import {
-  LoadingState,
   setViewMode,
   setSortOrder,
+  LoadingState,
   StateContext,
 } from "../reducer.ts";
 import { collectionRoutes, filterRoutes } from "./Routes.tsx";
@@ -47,12 +44,12 @@ import { collectionRoutes, filterRoutes } from "./Routes.tsx";
 
 const drawerWidth = 200;
 
-type Props = PropsWithChildren<{
+type Props = React.PropsWithChildren<{
   readonly id?: string; // current id of collection or id of filter
   readonly title?: string;
 }>;
 
-const Layout: FunctionComponent<Props> = (props: Props) => {
+const Layout: React.FunctionComponent<Props> = (props: Props) => {
   const { dispatch, state } = useContext(StateContext);
   const [openLeftDrawer, setOpenLeftDrawer] = useState(false);
   const [openRightDrawer, setOpenRightDrawer] = useState(false);
@@ -82,7 +79,7 @@ const Layout: FunctionComponent<Props> = (props: Props) => {
   };
 
   return (
-    <Fragment>
+    <>
       <Box flexGrow={1}>
         <AppBar position="static" id="appbar">
           <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -271,7 +268,7 @@ const Layout: FunctionComponent<Props> = (props: Props) => {
         />
       </Box>
       <main>{props.children}</main>
-    </Fragment>
+    </>
   );
 };
 export default Layout;
