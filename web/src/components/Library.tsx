@@ -42,7 +42,7 @@ const Library: React.FunctionComponent<Props> = (props: Props) => {
       <Container maxWidth="md">
         <Grid container>
           {books.map((book: Book) => (
-            <Grid item key={book.id} xs={6} sm={4} md={3}>
+            <Grid key={book.id} size={{xs: 6, sm: 4, md: 3}}>
               <Cover book={book} />
             </Grid>
           ))}
