@@ -3,39 +3,19 @@
 
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { forwardRef, useMemo } from "react";
 import { Link as RoconLink } from "rocon/react";
 import { collectionRoutes, filterRoutes } from "./Routes.tsx";
 
 type Props = {
   primary: string;
   route: typeof collectionRoutes.route | typeof filterRoutes.route;
-  match: { readonly id: string };
+  match: { readonly id: string, readonly page?: string };
 };
 
-const ListItemLink = (props: Props) => {
-  const renderLink = useMemo(
-    () =>
-      forwardRef<HTMLAnchorElement>(function Link(itemProps, ref) {
-        return (
-          <RoconLink
-            route={props.route}
-            match={props.match}
-            ref={ref}
-            {...itemProps}
-          />
-        );
-      }),
-    [props.match, props.route]
-  );
-
-  return (
-    <li>
-      <ListItemButton component={renderLink}>
-        <ListItemText primary={props.primary} />
-      </ListItemButton>
-    </li>
-  );
-};
+const ListItemLink = (props: Props) => (
+  <ListItemButton component={RoconLink<Props["match"]>} route={props.route} match={props.match}>
+    <ListItemText primary={props.primary} />
+  </ListItemButton>
+);
 
 export default ListItemLink;
