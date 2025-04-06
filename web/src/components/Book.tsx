@@ -127,10 +127,6 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    console.log(`key: ${e.key}`);
-  }
-
   const handlePreviousPage = () => {
     setPageIndex((prev) => (prev > 0 ? prev - 1 : prev));
   }
@@ -138,6 +134,17 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
   const handleNextPage = () => {
     if (book) {
       setPageIndex((prev) => (prev < book.pageCount ? prev + 1 : prev));
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.code === "Space") {
+      e.preventDefault();
+      if (e.shiftKey) {
+        handlePreviousPage();
+      } else {
+        handleNextPage();
+      }
     }
   }
 
