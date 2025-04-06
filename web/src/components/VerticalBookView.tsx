@@ -3,17 +3,20 @@
 
 import Box from "@mui/material/Box";
 import type { History } from "history";
-import { RefObject, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import { useInView } from "react-intersection-observer";
 import { useHistory } from "rocon/react";
 import type { Book } from "../domain/book.ts";
 import NavigationPage from "./NavigationPage.tsx";
 
 type Props = Readonly<{
+  pageIndex: number;
   book: Book;
   nextBook?: Book;
-  onNext: () => void;
+  onNextBook: () => void;
   onRandom: () => void;
+  onPreviousPage: () => void;
+  onNextPage: () => void;
 }>;
 
 const Page = (
@@ -63,17 +66,15 @@ const pages = (
   currentPageIndex: number,
   book: Book,
   history: History,
-  refs: RefObject<HTMLElement[]>
+  refs: RefObject<HTMLElement[]>,
+  onPreviousPage: () => void,
+  onNextPage: () => void
 ) => {
-  const onClick = (e: React.MouseEvent, page: number) => {
+  const onClick = (e: React.MouseEvent) => {
     if (e.shiftKey) {
-      if (page > 0) {
-        refs.current[page - 1].scrollIntoView({ behavior: "smooth" });
-      }
+      onPreviousPage();
     } else {
-      if (refs.current.length > page + 1) {
-        refs.current[page + 1].scrollIntoView({ behavior: "smooth" });
-      }
+      onNextPage();
     }
   };
   return [...Array(book.pageCount).keys()].map((i: number) => (
@@ -84,7 +85,7 @@ const pages = (
       history={history}
       refs={refs}
       loading={Math.abs(currentPageIndex - i) <= 1 ? "eager" : "lazy"}
-      onClick={(e) => onClick(e, i)}
+      onClick={onClick}
     />
   ));
 };
@@ -92,21 +93,24 @@ const pages = (
 const VerticalBookView = (props: Props) => {
   const refs = useRef<HTMLElement[]>([]);
   const history = useHistory();
-  const pageIndexRaw = parseInt(location.hash.substring(1));
-  const pageIndex = isNaN(pageIndexRaw) ? 0 : pageIndexRaw;
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (pageIndex !== 0 && refs.current && refs.current[pageIndex]) {
-      refs.current[pageIndex].scrollIntoView();
+    if (props.pageIndex !== 0 && refs.current && refs.current[props.pageIndex]) {
+      if (scrolled) {
+        refs.current[props.pageIndex].scrollIntoView({ behavior: "smooth" });
+      } else {
+        refs.current[props.pageIndex].scrollIntoView();
+        setScrolled(true);
+      }
     } else if (refs.current && refs.current[0]) {
       refs.current[0].scrollIntoView();
     }
-    // DO NOT add pageIndex because it stops goFirst halfway
-  }, [props.book]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [props.book, props.pageIndex, scrolled]);
 
   return (
     <Box mx="auto">
-      {pages(pageIndex, props.book, history, refs)}
+      {pages(props.pageIndex, props.book, history, refs, props.onPreviousPage, props.onNextPage)}
       <Box
         display="flex"
         flexDirection="column"
@@ -118,7 +122,7 @@ const VerticalBookView = (props: Props) => {
         <NavigationPage
           book={props.book}
           nextBook={props.nextBook}
-          onNext={props.onNext}
+          onNextBook={props.onNextBook}
           onRandom={props.onRandom}
         />
       </Box>

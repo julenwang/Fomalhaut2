@@ -12,7 +12,7 @@ import { message } from "../message.ts";
 type Props = Readonly<{
   book: Book;
   nextBook?: Book;
-  onNext: () => void;
+  onNextBook: () => void;
   onRandom: () => void;
 }>;
 
@@ -31,7 +31,7 @@ const NavigationPage = (props: Props) => {
           <Button
             variant="outlined"
             startIcon={<SkipNextIcon />}
-            onClick={props.onNext}
+            onClick={props.onNextBook}
           >
             {message.commands.next}
           </Button>

@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2020 mtgto <hogerappa@gmail.com>
 // SPDX-License-Identifier: GPL-3.0-only
 
-import { useContext, useState, useTransition } from "react";
+import React, { useContext, useState, useTransition } from "react";
 import { useNavigate } from "rocon/react";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -33,6 +33,10 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
   const [speedDialOpen, setSpeedDialOpen] = useState(false);
   const [addToCollectionOpen, setAddToCollectionOpen] = useState(false);
   const [reading, setReading] = useState(true);
+  const [pageIndex, setPageIndex] = useState(() => {
+    const page = parseInt(location.hash.substring(1));
+    return isNaN(page) ? 0 : page;
+  });
   const { state, dispatch } = useContext(StateContext);
   const navigate = useNavigate();
   const theme = useTheme();
@@ -86,7 +90,7 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     setSpeedDialOpen(false);
   };
 
-  const handleNext = () => {
+  const handleNextBook = () => {
     navigateBookId(nextBookId);
     window.scrollTo(0, 0);
     setSpeedDialOpen(false);
@@ -123,25 +127,45 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    console.log(`key: ${e.key}`);
+  }
+
+  const handlePreviousPage = () => {
+    setPageIndex((prev) => (prev > 0 ? prev - 1 : prev));
+  }
+
+  const handleNextPage = () => {
+    if (book) {
+      setPageIndex((prev) => (prev < book.pageCount ? prev + 1 : prev));
+    }
+  }
+
   if (book) {
     return (
       <Layout title={book.name}>
         <title>{`${book?.name ?? 'Loading…'} - Fomalhaut2`}</title>
-        <Container maxWidth="md">
+        <Container maxWidth="md" tabIndex={0} onKeyDown={handleKeyDown}>
           {state.viewMode === "left" || state.viewMode === "right" ? (
             <HorizontalBookView
+              pageIndex={pageIndex}
               book={book}
               nextBook={nextBook}
               direction={state.viewMode}
-              onNext={handleNext}
+              onNextBook={handleNextBook}
               onRandom={handleRandom}
+              onPreviousPage={handlePreviousPage}
+              onNextPage={handleNextPage}
             />
           ) : (
             <VerticalBookView
+              pageIndex={pageIndex}
               book={book}
               nextBook={nextBook}
-              onNext={handleNext}
+              onNextBook={handleNextBook}
               onRandom={handleRandom}
+              onPreviousPage={handlePreviousPage}
+              onNextPage={handleNextPage}
             />
           )}
           <SpeedDial
@@ -183,7 +207,7 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
             />
             {nextBookId ? (
               <SpeedDialAction
-                onClick={handleNext}
+                onClick={handleNextBook}
                 icon={<SkipNextIcon />}
                 slotProps={{ tooltip: { title: message.commands.next } }}
               />
