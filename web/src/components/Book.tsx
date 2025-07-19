@@ -152,7 +152,7 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     return (
       <Layout title={book.name}>
         <title>{`${book?.name ?? 'Loading…'} - Fomalhaut2`}</title>
-        <Container maxWidth="md" tabIndex={0} onKeyDown={handleKeyDown}>
+        <Container maxWidth={false} disableGutters tabIndex={0} onKeyDown={handleKeyDown}>
           {state.viewMode === "left" || state.viewMode === "right" ? (
             <HorizontalBookView
               pageIndex={pageIndex}
