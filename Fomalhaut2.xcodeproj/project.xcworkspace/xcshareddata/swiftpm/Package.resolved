@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mtgto/Unrar.swift.git",
       "state" : {
-        "revision" : "1112f3124eae0d9b962b0c26c9817c251917c62e",
-        "version" : "0.4.1"
+        "revision" : "102c17ef80b48897e53c57316a930c6bf7c8aa2c",
+        "version" : "0.4.2"
       }
     },
     {
