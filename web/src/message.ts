@@ -22,6 +22,7 @@ export type Message = Readonly<{
     addToCollection: string;
     next: string;
     prev: string;
+    choosePage: string;
   }>;
   viewMode: Readonly<{
     name: string;
@@ -34,6 +35,11 @@ export type Message = Readonly<{
     name: string;
     readCount: string;
     created: string;
+  }>;
+  choosePageDialog: Readonly<{
+    title: string;
+    ok: string;
+    cancel: string;
   }>;
 }>;
 
@@ -58,6 +64,7 @@ export const ja: Message = {
     addToCollection: "コレクションに追加",
     next: "次の本を開く",
     prev: "前の本を開く",
+    choosePage: "ページを選択",
   },
   viewMode: {
     name: "スクロール",
@@ -70,6 +77,11 @@ export const ja: Message = {
     name: "名前順",
     readCount: "読んだ回数",
     created: "作成順",
+  },
+  choosePageDialog: {
+    title: "ページを選択",
+    ok: "OK",
+    cancel: "キャンセル",
   },
 };
 
@@ -94,6 +106,7 @@ export const en: Message = {
     addToCollection: "Add to Collection",
     next: "Go to next book",
     prev: "Go to previous book",
+    choosePage: "Choose Page",
   },
   viewMode: {
     name: "Scroll",
@@ -106,6 +119,11 @@ export const en: Message = {
     name: "Name",
     readCount: "View Count",
     created: "Created",
+  },
+  choosePageDialog: {
+    title: "Choose Page",
+    ok: "OK",
+    cancel: "Cancel",
   },
 };
 

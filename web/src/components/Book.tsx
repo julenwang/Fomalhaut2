@@ -7,6 +7,7 @@ import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import MoveDownIcon from "@mui/icons-material/MoveDown";
 import VerticalAlignTopIcon from "@mui/icons-material/VerticalAlignTop";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
@@ -23,6 +24,8 @@ import Layout from "./Layout.tsx";
 import { bookRoutes } from "./Routes.tsx";
 import VerticalBookView from "./VerticalBookView.tsx";
 import { AddToCollection } from "./AddToCollection.tsx";
+import PageSliderDialog from "./PageSliderDialog.tsx";
+
 
 type Props = {
   readonly id: string;
@@ -37,6 +40,7 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     const page = parseInt(location.hash.substring(1));
     return isNaN(page) ? 0 : page;
   });
+  const [pageSliderOpen, setPageSliderOpen] = useState(false);
   const { state, dispatch } = useContext(StateContext);
   const navigate = useNavigate();
   const theme = useTheme();
@@ -68,6 +72,18 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setSpeedDialOpen(false);
   };
+
+  const handleChoosePage = () => {
+    setPageSliderOpen(true);
+    setSpeedDialOpen(false);
+  };
+
+  const handlePageSliderClose = (pageIndex?: number) => {
+    if (pageIndex) {
+      setPageIndex(pageIndex);
+    }
+    setPageSliderOpen(false);
+  }
 
   const handleToggleLike = () => {
     startToggleLike(async () => {
@@ -194,6 +210,11 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
               slotProps={{ tooltip: { title: message.commands.scrollToTop } }}
             />
             <SpeedDialAction
+              onClick={handleChoosePage}
+              icon={<MoveDownIcon />}
+              slotProps={{ tooltip: { title: message.commands.choosePage } }}
+            />
+            <SpeedDialAction
               onClick={handleToggleLike}
               icon={book?.like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
               slotProps={{
@@ -237,6 +258,7 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
             open={addToCollectionOpen}
             onClose={() => setAddToCollectionOpen(false)}
           />
+          <PageSliderDialog open={pageSliderOpen} currentPageIndex={pageIndex} pageCount={book.pageCount} onClose={handlePageSliderClose} />
         </Container>
       </Layout>
     );
