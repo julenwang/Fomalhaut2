@@ -42,7 +42,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mtgto/SevenZip.swift",
       "state" : {
-        "revision" : "d64eb6aef346c05e39cb2479b21510bb7b8e230f"
+        "revision" : "271e15c126e1601b54e218574574e2499562a9fd"
       }
     },
     {
@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mtgto/Unrar.swift.git",
       "state" : {
-        "revision" : "102c17ef80b48897e53c57316a930c6bf7c8aa2c",
-        "version" : "0.4.2"
+        "revision" : "b27f008ea520539c780024d090686c9cd3ae3bbc",
+        "version" : "0.5.1"
       }
     },
     {
