@@ -99,6 +99,12 @@ class SpreadPageViewController: NSViewController {
         }
       )
       .disposed(by: self.disposeBag)
+
+    // Reload images to apply monochrome filter
+    self.monochrome
+      .withLatestFrom(self.currentPageIndex)
+      .bind(to: self.currentPageIndex)
+      .disposed(by: self.disposeBag)
   }
 
   override func viewWillDisappear() {
