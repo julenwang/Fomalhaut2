@@ -20,20 +20,20 @@ type Props = {
 };
 
 const PageSliderDialog = (props: Props) => {
-  const [pageIndex, setPageIndex] = useState(props.currentPageIndex);
+  const [page, setPage] = useState(props.currentPageIndex + 1);
   const handleSliderChange = (_: Event, newValue: number) => {
-    setPageIndex(newValue);
+    setPage(newValue);
   };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPageIndex(event.target.value === "" ? 0 : Number(event.target.value));
+    setPage(event.target.value === "" ? 0 : Number(event.target.value));
   };
   const handleCancel = () => {
     props.onClose();
-    setPageIndex(props.currentPageIndex); // Reset for opening this dialog in next
+    setPage(props.currentPageIndex); // Reset for opening this dialog in next
   };
 
   const handleOK = () => {
-    props.onClose(pageIndex);
+    props.onClose(page - 1);
   };
 
   return (
@@ -43,7 +43,7 @@ const PageSliderDialog = (props: Props) => {
         <Stack direction="row" spacing={2}>
           <Slider
             defaultValue={props.currentPageIndex}
-            value={pageIndex}
+            value={page}
             onChange={handleSliderChange}
             valueLabelDisplay="on"
             min={1}
@@ -56,7 +56,7 @@ const PageSliderDialog = (props: Props) => {
           <Input
             sx={{ width: 64 }}
             size="small"
-            value={pageIndex.toString()}
+            value={page.toString()}
             onChange={handleInputChange}
             inputProps={{ type: "number", min: 1, max: props.pageCount }}
           />
@@ -74,4 +74,5 @@ const PageSliderDialog = (props: Props) => {
   );
 };
 
+PageSliderDialog.displayName = "PageSliderDialog";
 export default PageSliderDialog;

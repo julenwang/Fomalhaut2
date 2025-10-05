@@ -1,7 +1,12 @@
 // SPDX-FileCopyrightText: 2020 mtgto <hogerappa@gmail.com>
 // SPDX-License-Identifier: GPL-3.0-only
 
-import React, { useContext, useState, useTransition } from "react";
+import React, {
+  useContext,
+  useState,
+  useTransition,
+  useDebugValue,
+} from "react";
 import { useNavigate } from "rocon/react";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -26,7 +31,6 @@ import VerticalBookView from "./VerticalBookView.tsx";
 import { AddToCollection } from "./AddToCollection.tsx";
 import PageSliderDialog from "./PageSliderDialog.tsx";
 
-
 type Props = {
   readonly id: string;
 };
@@ -40,6 +44,7 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     const page = parseInt(location.hash.substring(1));
     return isNaN(page) ? 0 : page;
   });
+  useDebugValue(pageIndex);
   const [pageSliderOpen, setPageSliderOpen] = useState(false);
   const { state, dispatch } = useContext(StateContext);
   const navigate = useNavigate();
@@ -79,11 +84,11 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
   };
 
   const handlePageSliderClose = (pageIndex?: number) => {
-    if (pageIndex) {
-      setPageIndex(pageIndex);
+    if (pageIndex != null) {
+      setPageIndex(() => pageIndex);
     }
     setPageSliderOpen(false);
-  }
+  };
 
   const handleToggleLike = () => {
     startToggleLike(async () => {
@@ -122,6 +127,7 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     const firstPage = document.getElementById("0");
     if (firstPage) {
       firstPage.scrollIntoView({ behavior: "smooth" });
+      setPageIndex(0);
     }
   };
 
@@ -145,13 +151,13 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
 
   const handlePreviousPage = () => {
     setPageIndex((prev) => (prev > 0 ? prev - 1 : prev));
-  }
+  };
 
   const handleNextPage = () => {
     if (book) {
       setPageIndex((prev) => (prev < book.pageCount ? prev + 1 : prev));
     }
-  }
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.code === "Space") {
@@ -162,13 +168,18 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
         handleNextPage();
       }
     }
-  }
+  };
 
   if (book) {
     return (
       <Layout title={book.name}>
-        <title>{`${book?.name ?? 'Loading…'} - Fomalhaut2`}</title>
-        <Container maxWidth={false} disableGutters tabIndex={0} onKeyDown={handleKeyDown}>
+        <title>{`${book?.name ?? "Loading…"} - Fomalhaut2`}</title>
+        <Container
+          maxWidth={false}
+          disableGutters
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+        >
           {state.viewMode === "left" || state.viewMode === "right" ? (
             <HorizontalBookView
               pageIndex={pageIndex}
@@ -258,7 +269,13 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
             open={addToCollectionOpen}
             onClose={() => setAddToCollectionOpen(false)}
           />
-          <PageSliderDialog open={pageSliderOpen} currentPageIndex={pageIndex} pageCount={book.pageCount} onClose={handlePageSliderClose} />
+          <PageSliderDialog
+            key={pageIndex}
+            open={pageSliderOpen}
+            currentPageIndex={pageIndex}
+            pageCount={book.pageCount}
+            onClose={handlePageSliderClose}
+          />
         </Container>
       </Layout>
     );
@@ -272,4 +289,5 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     );
   }
 };
+BookPage.displayName = "Book";
 export default BookPage;
