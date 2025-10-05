@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## v2.0.0 (2025-10-05)
+
+### Added
+
+- Add monochrome filter (#19)
+- Add "Change Page" action in web
+
+### Changed
+
+- Fixed that caused an error when opening a moved file
+- Update web packages
+- Update Unrar.swift to v0.5.1
+- Update SevenZip.swift to v0.2.3
+
+### 
+
 ## v1.9.0 (2025-03-16)
 
 ### Added
