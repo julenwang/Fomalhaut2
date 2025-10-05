@@ -185,6 +185,14 @@ class SpreadPageViewController: NSViewController {
       self.currentPageIndex.flatMapLatest { (currentPageIndex) in
         self.fetchImages(pageIndex: currentPageIndex, document: document)
       }
+      .map { (loadedImage: LoadedImage) in
+        if self.monochrome.value {
+          let images = loadedImage.images.map { $0.monochrome() ?? $0 }
+          return LoadedImage(preload: loadedImage.preload, firstPageIndex: loadedImage.firstPageIndex, images: images)
+        } else {
+          return loadedImage
+        }
+      }
       .observe(on: MainScheduler.instance)
       .subscribe(
         onNext: { (loadedImage) in

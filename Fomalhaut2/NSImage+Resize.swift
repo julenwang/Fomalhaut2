@@ -46,4 +46,17 @@ extension NSImage {
 
     return newBitmap.representation(using: .jpeg, properties: [:])
   }
+
+  func monochrome() -> NSImage? {
+    guard let tiffRepresentation = self.tiffRepresentation else { return nil }
+    guard let ciImage = CIImage(data: tiffRepresentation) else { return nil }
+    guard let filter = CIFilter(name: "CIPhotoEffectNoir") else { return nil }
+    filter.setValue(ciImage, forKey: kCIInputImageKey)
+    guard let outputCIImage = filter.outputImage else { return nil }
+    let rep = NSCIImageRep(ciImage: outputCIImage)
+    let newImage = NSImage(size: rep.size)
+    newImage.addRepresentation(rep)
+
+    return newImage
+  }
 }
