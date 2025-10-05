@@ -24,6 +24,7 @@ class SpreadPageViewController: NSViewController {
   let viewStyle: BehaviorRelay<BookViewStyle> = BehaviorRelay(value: .spread)
   let currentPageIndex: BehaviorRelay<Int> = BehaviorRelay(value: 0)
   let like: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
+  let monochrome: BehaviorRelay<Bool> = BehaviorRelay(value: false)
   var isFullScreen: Bool = false
   private let showPageNumber: BehaviorRelay<Bool> = BehaviorRelay(value: true)
   private var shiftedSinglePage: Bool = false

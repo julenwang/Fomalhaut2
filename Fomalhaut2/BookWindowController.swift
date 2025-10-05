@@ -11,6 +11,7 @@ class BookWindowController: NSWindowController, NSMenuItemValidation, NSWindowDe
   @IBOutlet weak var likeButton: NSButton!
   @IBOutlet weak var singlePageControl: NSSegmentedControl!
   @IBOutlet weak var viewStyleControl: NSSegmentedControl!
+  @IBOutlet weak var monochromeButton: NSButton!
 
   override func windowDidLoad() {
     super.windowDidLoad()
@@ -48,6 +49,11 @@ class BookWindowController: NSWindowController, NSMenuItemValidation, NSWindowDe
     self.likeButton.rx.state
       .subscribe(onNext: { (state) in
         spreadPageViewController.like.accept(state == .on)
+      })
+      .disposed(by: self.disposeBag)
+    self.monochromeButton.rx.state
+      .subscribe(onNext: { (state) in
+        spreadPageViewController.monochrome.accept(state == .on)
       })
       .disposed(by: self.disposeBag)
   }
