@@ -232,11 +232,11 @@ class BookCollectionViewController: NSSplitViewController, NSMenuItemValidation 
         let url = try book.resolveURL(bookmarkDataIsStale: &bookmarkDataIsStale)
         log.debug("bookmarkDataIsStale = \(bookmarkDataIsStale)")
         if bookmarkDataIsStale {
-          log.info("Regenerate book.bookmark of \(url.path)")
+          log.warning("bookmark data is already stale.")
           do {
             let realm = try threadLocalRealm()
             try realm.write {
-              book.bookmark = try url.bookmarkData(options: [.withSecurityScope, .securityScopeAllowOnlyReadAccess])
+              try book.setURL(url)
             }
           } catch {
             log.error("error while update bookmark of book \(url.path): \(error)")
