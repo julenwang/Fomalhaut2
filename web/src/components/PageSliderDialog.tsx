@@ -7,15 +7,10 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import MuiInput from '@mui/material/Input';
+import Input from '@mui/material/Input';
 import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
-import { styled } from '@mui/material/styles';
 import { message } from '../message';
-
-const Input = styled(MuiInput)`
-  width: 42px;
-`;
 
 type Props = {
   readonly open: boolean;
@@ -31,6 +26,14 @@ const PageSliderDialog = (props: Props) => {
   };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPageIndex(event.target.value === "" ? 0 : Number(event.target.value));
+  };
+  const handleCancel = () => {
+    props.onClose();
+    setPageIndex(props.currentPageIndex); // Reset for opening this dialog in next
+  };
+
+  const handleOK = () => {
+    props.onClose(pageIndex);
   };
 
   return (
@@ -60,10 +63,10 @@ const PageSliderDialog = (props: Props) => {
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => props.onClose()}>
+        <Button onClick={handleCancel}>
           {message.choosePageDialog.cancel}
         </Button>
-        <Button onClick={() => props.onClose(pageIndex)}>
+        <Button onClick={handleOK}>
           {message.choosePageDialog.ok}
         </Button>
       </DialogActions>
