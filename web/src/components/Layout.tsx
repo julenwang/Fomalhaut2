@@ -1,12 +1,12 @@
 // SPDX-FileCopyrightText: 2020 mtgto <hogerappa@gmail.com>
 // SPDX-License-Identifier: GPL-3.0-only
 
+import BookIcon from "@mui/icons-material/Book";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SortByAlphaIcon from "@mui/icons-material/SortByAlpha";
-import BookIcon from "@mui/icons-material/Book";
 import SwipeDownIcon from "@mui/icons-material/SwipeDown";
 import SwipeLeftIcon from "@mui/icons-material/SwipeLeft";
 import SwipeRightIcon from "@mui/icons-material/SwipeRight";
@@ -21,8 +21,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import Snackbar from "@mui/material/Snackbar";
-import { useTheme } from "@mui/material/styles";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import { useTheme } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
@@ -34,12 +34,13 @@ import {
 import { useLocation, useNavigate } from "rocon/react";
 import { message } from "../message.ts";
 import {
-  setViewMode,
-  setSortOrder,
   LoadingState,
   StateContext,
+  setSortOrder,
+  setViewMode,
 } from "../reducer.ts";
 import { collectionRoutes, filterRoutes } from "./Routes.tsx";
+
 // import ListItemLink from "./ListItemLink";
 
 const drawerWidth = 200;
@@ -244,7 +245,7 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
               <ListItemIcon>
                 <CalendarMonthIcon />
               </ListItemIcon>
-              <ListItemText>{message.sortOrder.created}</ListItemText>
+              <ListItemText>{message.sortOrder.readCount}</ListItemText>
             </ListItemButton>
             <ListItemButton
               selected={state.sortOrder === "created"}
