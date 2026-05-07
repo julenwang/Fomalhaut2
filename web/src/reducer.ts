@@ -210,8 +210,8 @@ export const reducer = (state: State, action: Actions): State => {
       return {
         ...state,
         collections: state.collections.map((collection) => {
-          if (collection.id === action.payload[0]) {
-            return addBook(action.payload[1], collection);
+          if (collection.id === action.payload[1]) {
+            return addBook(action.payload[0], collection);
           } else {
             return collection;
           }
