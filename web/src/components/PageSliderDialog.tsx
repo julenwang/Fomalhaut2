@@ -1,16 +1,16 @@
 // SPDX-FileCopyrightText: 2025 mtgto <hogerappa@gmail.com>
 // SPDX-License-Identifier: GPL-3.0-only
 
-import { use, useState } from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import Input from '@mui/material/Input';
-import Slider from '@mui/material/Slider';
-import Stack from '@mui/material/Stack';
-import { message } from '../message';
+import { useState } from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import Input from "@mui/material/Input";
+import Slider from "@mui/material/Slider";
+import Stack from "@mui/material/Stack";
+import { message } from "../message";
 
 type Props = {
   readonly open: boolean;
@@ -63,12 +63,8 @@ const PageSliderDialog = (props: Props) => {
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCancel}>
-          {message.choosePageDialog.cancel}
-        </Button>
-        <Button onClick={handleOK}>
-          {message.choosePageDialog.ok}
-        </Button>
+        <Button onClick={handleCancel}>{message.choosePageDialog.cancel}</Button>
+        <Button onClick={handleOK}>{message.choosePageDialog.ok}</Button>
       </DialogActions>
     </Dialog>
   );

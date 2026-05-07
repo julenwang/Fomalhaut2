@@ -102,16 +102,8 @@ const loadLocalStorage = (): {
     const obj = JSON.parse(value);
     const viewMode = obj["viewMode"];
     const sortOrderRaw = obj["sortOrder"];
-    if (
-      viewMode === "left" ||
-      viewMode === "right" ||
-      viewMode === "vertical"
-    ) {
-      if (
-        sortOrderRaw === "name" ||
-        sortOrderRaw === "readCount" ||
-        sortOrderRaw === "created"
-      ) {
+    if (viewMode === "left" || viewMode === "right" || viewMode === "vertical") {
+      if (sortOrderRaw === "name" || sortOrderRaw === "readCount" || sortOrderRaw === "created") {
         sortOrder = sortOrderRaw;
       }
       return { viewMode, sortOrder };
@@ -120,20 +112,11 @@ const loadLocalStorage = (): {
   return { viewMode: "right", sortOrder };
 };
 
-const saveLocalStorage = (
-  viewMode: State["viewMode"],
-  sortOrder: SortOrder
-) => {
-  localStorage.setItem(
-    "net.mtgto.Fomalhaut2",
-    JSON.stringify({ viewMode, sortOrder })
-  );
+const saveLocalStorage = (viewMode: State["viewMode"], sortOrder: SortOrder) => {
+  localStorage.setItem("net.mtgto.Fomalhaut2", JSON.stringify({ viewMode, sortOrder }));
 };
 
-const sortBooks = (
-  sortOrder: SortOrder,
-  books: ReadonlyArray<Book>
-): ReadonlyArray<Book> => {
+const sortBooks = (sortOrder: SortOrder, books: ReadonlyArray<Book>): ReadonlyArray<Book> => {
   return [...books].sort((a: Book, b: Book): number => {
     switch (sortOrder) {
       case "name":
@@ -177,11 +160,7 @@ export const initialState: State = {
   collections: [],
   filters: [
     new Filter("all", message.filter.all, () => true),
-    new Filter(
-      "unread",
-      message.filter.unread,
-      (book: Book) => book.readCount === 0
-    ),
+    new Filter("unread", message.filter.unread, (book: Book) => book.readCount === 0),
     new Filter("like", message.filter.like, (book: Book) => book.like),
   ],
   books: [],
@@ -206,7 +185,7 @@ export const reducer = (state: State, action: Actions): State => {
       return {
         ...state,
         books: state.books.map((book) =>
-          book.id === action.payload ? { ...book, like: !book.like } : book
+          book.id === action.payload ? { ...book, like: !book.like } : book,
         ),
       };
     case SetCurrentList:

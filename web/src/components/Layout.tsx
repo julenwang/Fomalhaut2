@@ -29,12 +29,7 @@ import Typography from "@mui/material/Typography";
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "rocon/react";
 import { message } from "../message.ts";
-import {
-  LoadingState,
-  StateContext,
-  setSortOrder,
-  setViewMode,
-} from "../reducer.ts";
+import { LoadingState, StateContext, setSortOrder, setViewMode } from "../reducer.ts";
 import { collectionRoutes, filterRoutes } from "./Routes.tsx";
 
 // import ListItemLink from "./ListItemLink";
@@ -94,11 +89,7 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
             <Typography variant="h6">{props.title ?? "Fomalhaut2"}</Typography>
             <Box sx={{ display: "flex", flex: 1, justifyContent: "flex-end" }}>
               <Tooltip title={message.settings}>
-                <IconButton
-                  size="large"
-                  color="inherit"
-                  onClick={handleRightDrawerOpen}
-                >
+                <IconButton size="large" color="inherit" onClick={handleRightDrawerOpen}>
                   <SettingsIcon />
                 </IconButton>
               </Tooltip>
@@ -129,12 +120,7 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
             </IconButton>
           </Box>
           <Divider />
-          <List
-            subheader={
-              <ListSubheader disableSticky>{message.library}</ListSubheader>
-            }
-            dense
-          >
+          <List subheader={<ListSubheader disableSticky>{message.library}</ListSubheader>} dense>
             {state.filters.map((filter) => (
               // ListItemLink causes re-render...
               // <ListItemLink
@@ -153,12 +139,7 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
             ))}
           </List>
           <Divider />
-          <List
-            subheader={
-              <ListSubheader disableSticky>{message.collection}</ListSubheader>
-            }
-            dense
-          >
+          <List subheader={<ListSubheader disableSticky>{message.collection}</ListSubheader>} dense>
             {state.collections.map((collection) => (
               // <ListItemLink
               //   key={collection.id}
@@ -169,9 +150,7 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
               <ListItemButton
                 key={collection.id}
                 selected={collection.id === props.id}
-                onClick={() =>
-                  navigate(collectionRoutes.route, { id: collection.id })
-                }
+                onClick={() => navigate(collectionRoutes.route, { id: collection.id })}
               >
                 <ListItemText primary={collection.name} />
               </ListItemButton>
@@ -184,13 +163,7 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
           onOpen={() => setOpenRightDrawer(true)}
           onClose={() => setOpenRightDrawer(false)}
         >
-          <List
-            subheader={
-              <ListSubheader disableSticky>
-                {message.viewMode.name}
-              </ListSubheader>
-            }
-          >
+          <List subheader={<ListSubheader disableSticky>{message.viewMode.name}</ListSubheader>}>
             <ListItemButton
               selected={state.viewMode === "vertical"}
               onClick={() => dispatch(setViewMode("vertical"))}
@@ -220,13 +193,7 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
             </ListItemButton>
             <Divider />
           </List>
-          <List
-            subheader={
-              <ListSubheader disableSticky>
-                {message.sortOrder.header}
-              </ListSubheader>
-            }
-          >
+          <List subheader={<ListSubheader disableSticky>{message.sortOrder.header}</ListSubheader>}>
             <ListItemButton
               selected={state.sortOrder === "name"}
               onClick={() => dispatch(setSortOrder("name"))}

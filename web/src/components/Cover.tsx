@@ -18,12 +18,12 @@ type Props = {
 
 const Cover: React.FunctionComponent<Props> = (props: Props) => {
   return (
-    <Link component={RouterLink<{ id: string }>} route={bookRoutes.anyRoute} match={{ id: props.book.id }}>
-      <Card
-        variant="outlined"
-        sx={{ height: "100%", position: "relative" }}
-        square
-      >
+    <Link
+      component={RouterLink<{ id: string }>}
+      route={bookRoutes.anyRoute}
+      match={{ id: props.book.id }}
+    >
+      <Card variant="outlined" sx={{ height: "100%", position: "relative" }} square>
         <CardMedia
           component="img"
           sx={{ objectFit: "cover" }}

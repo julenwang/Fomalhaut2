@@ -28,7 +28,7 @@ const Page = (
     refs: RefObject<HTMLElement[]>;
     loading: HTMLImageElement["loading"];
     onClick: (e: React.MouseEvent) => void;
-  }>
+  }>,
 ) => {
   const { ref } = useInView({
     onChange: (inView) => {
@@ -65,7 +65,7 @@ const Page = (
           mx: "auto",
           my: "auto",
           maxHeight: "100%",
-          maxWidth: "100%"
+          maxWidth: "100%",
         }}
       />
     </Box>
@@ -78,7 +78,7 @@ const pages = (
   history: History,
   refs: RefObject<HTMLElement[]>,
   onPreviousPage: () => void,
-  onNextPage: () => void
+  onNextPage: () => void,
 ) => {
   const onClick = (e: React.MouseEvent) => {
     if (e.shiftKey) {
@@ -109,11 +109,7 @@ const HorizontalBookView = (props: Props) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (
-      props.pageIndex !== 0 &&
-      refs.current &&
-      refs.current[props.pageIndex]
-    ) {
+    if (props.pageIndex !== 0 && refs.current && refs.current[props.pageIndex]) {
       if (scrolled) {
         refs.current[props.pageIndex].scrollIntoView({ behavior: "smooth" });
       } else {
@@ -136,14 +132,7 @@ const HorizontalBookView = (props: Props) => {
         overflowX: "auto",
       }}
     >
-      {pages(
-        props.pageIndex,
-        props.book,
-        history,
-        refs,
-        props.onPreviousPage,
-        props.onNextPage
-      )}
+      {pages(props.pageIndex, props.book, history, refs, props.onPreviousPage, props.onNextPage)}
       <Box
         sx={{
           display: "flex",

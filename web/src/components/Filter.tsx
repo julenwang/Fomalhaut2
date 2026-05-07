@@ -17,9 +17,7 @@ type Props = {
 
 const FilterPage: React.FunctionComponent<Props> = (props: Props) => {
   const { dispatch, state } = useContext(StateContext);
-  const filter: Filter | undefined = state.filters.find(
-    (filter) => filter.id === props.id
-  );
+  const filter: Filter | undefined = state.filters.find((filter) => filter.id === props.id);
   const books: ReadonlyArray<Book> = filter
     ? state.books.filter((book) => filter.filter(book))
     : state.books;
@@ -36,9 +34,7 @@ const FilterPage: React.FunctionComponent<Props> = (props: Props) => {
       books={books}
       title={filter?.name ?? message.filter.all}
       page={props.page}
-      pageChanged={(page) =>
-        navigate(filterRoutes.route, { id: props.id, page: page.toString() })
-      }
+      pageChanged={(page) => navigate(filterRoutes.route, { id: props.id, page: page.toString() })}
     />
   );
 };

@@ -28,11 +28,7 @@ const NavigationPage = (props: Props) => {
       )}
       <Stack direction="row" spacing={2}>
         {props.nextBook ? (
-          <Button
-            variant="outlined"
-            startIcon={<SkipNextIcon />}
-            onClick={props.onNextBook}
-          >
+          <Button variant="outlined" startIcon={<SkipNextIcon />} onClick={props.onNextBook}>
             {message.commands.next}
           </Button>
         ) : (

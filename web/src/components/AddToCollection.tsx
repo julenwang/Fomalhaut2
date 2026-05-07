@@ -16,9 +16,7 @@ type Props = {
   readonly onClose: () => void;
 };
 
-export const AddToCollection: React.FunctionComponent<Props> = (
-  props: Props
-) => {
+export const AddToCollection: React.FunctionComponent<Props> = (props: Props) => {
   const { state, dispatch } = useContext(StateContext);
   const [calling, startAddition] = useTransition();
 
@@ -45,10 +43,7 @@ export const AddToCollection: React.FunctionComponent<Props> = (
           <ListItem key={collection.id}>
             <ListItemButton onClick={() => handleAddToCollection(collection)}>
               {calling && (
-                <CircularProgress
-                  size={24}
-                  sx={{ marginLeft: "-8px", marginRight: "8px" }}
-                />
+                <CircularProgress size={24} sx={{ marginLeft: "-8px", marginRight: "8px" }} />
               )}
               <ListItemText primary={collection.name} />
             </ListItemButton>

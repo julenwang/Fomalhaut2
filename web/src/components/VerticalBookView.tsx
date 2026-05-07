@@ -3,13 +3,7 @@
 
 import Box from "@mui/material/Box";
 import type { History } from "history";
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type RefObject,
-} from "react";
+import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import { useInView } from "react-intersection-observer";
 import { useHistory } from "rocon/react";
 import type { Book } from "../domain/book.ts";
@@ -33,7 +27,7 @@ const Page = (
     refs: RefObject<HTMLElement[]>;
     loading: HTMLImageElement["loading"];
     onClick: (e: React.MouseEvent) => void;
-  }>
+  }>,
 ) => {
   const { ref: inViewRef } = useInView({
     onChange: (inView) => {
@@ -49,7 +43,7 @@ const Page = (
       props.refs.current[props.index] = element;
       inViewRef(element);
     },
-    [inViewRef, props]
+    [inViewRef, props],
   );
   return (
     <Box
@@ -75,7 +69,7 @@ const pages = (
   history: History,
   refs: RefObject<HTMLElement[]>,
   onPreviousPage: () => void,
-  onNextPage: () => void
+  onNextPage: () => void,
 ) => {
   const onClick = (e: React.MouseEvent) => {
     if (e.shiftKey) {
@@ -103,11 +97,7 @@ const VerticalBookView = (props: Props) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (
-      props.pageIndex !== 0 &&
-      refs.current &&
-      refs.current[props.pageIndex]
-    ) {
+    if (props.pageIndex !== 0 && refs.current && refs.current[props.pageIndex]) {
       if (scrolled) {
         refs.current[props.pageIndex].scrollIntoView({ behavior: "smooth" });
       } else {
@@ -121,14 +111,7 @@ const VerticalBookView = (props: Props) => {
 
   return (
     <Box sx={{ mx: "auto" }}>
-      {pages(
-        props.pageIndex,
-        props.book,
-        history,
-        refs,
-        props.onPreviousPage,
-        props.onNextPage
-      )}
+      {pages(props.pageIndex, props.book, history, refs, props.onPreviousPage, props.onNextPage)}
       <Box
         sx={{
           display: "flex",

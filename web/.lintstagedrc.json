@@ -1,4 +1,4 @@
 {
-  "*.{js,jsx,json,md,ts,tsx}": "prettier --write --ignore-unknown",
+  "*.{js,jsx,json,md,ts,tsx}": "oxfmt",
   "../**/*.swift": "swift-format --in-place --parallel --configuration ../.swift-format"
 }

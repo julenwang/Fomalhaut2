@@ -27,7 +27,7 @@ const Library: React.FunctionComponent<Props> = (props: Props) => {
   const pageCount = Math.ceil(props.books.length / numberOfBooksPerPage);
   const books = props.books.slice(
     ((props.page ?? 1) - 1) * numberOfBooksPerPage,
-    ((props.page ?? 1) - 1) * numberOfBooksPerPage + numberOfBooksPerPage
+    ((props.page ?? 1) - 1) * numberOfBooksPerPage + numberOfBooksPerPage,
   );
   return (
     <Layout id={props.id}>
@@ -48,11 +48,7 @@ const Library: React.FunctionComponent<Props> = (props: Props) => {
           ))}
         </Grid>
         <Box sx={{ display: "flex", justifyContent: "center", pt: 4, pb: 4 }}>
-          <Pagination
-            count={pageCount}
-            page={props.page ?? 1}
-            onChange={handleChangePage}
-          />
+          <Pagination count={pageCount} page={props.page ?? 1} onChange={handleChangePage} />
         </Box>
       </Container>
     </Layout>

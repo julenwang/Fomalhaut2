@@ -9,7 +9,7 @@ import { collectionRoutes, filterRoutes } from "./Routes.tsx";
 type Props = {
   primary: string;
   route: typeof collectionRoutes.route | typeof filterRoutes.route;
-  match: { readonly id: string, readonly page?: string };
+  match: { readonly id: string; readonly page?: string };
 };
 
 const ListItemLink = (props: Props) => (

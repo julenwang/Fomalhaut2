@@ -31,7 +31,7 @@ const parseBook = (book: ApiBook): Book =>
     book.readCount,
     book.like,
     book.isRightToLeft,
-    new Date(book.createdAt)
+    new Date(book.createdAt),
   );
 
 const App: React.FC = () => {
@@ -68,7 +68,7 @@ const App: React.FC = () => {
           ].join(","),
         },
       }),
-    [prefersDarkMode]
+    [prefersDarkMode],
   );
 
   useEffect(() => {
@@ -88,9 +88,9 @@ const App: React.FC = () => {
               new Collection(
                 collection.id,
                 collection.name,
-                collection.books.map((book) => parseBook(book))
-              )
-          )
+                collection.books.map((book) => parseBook(book)),
+              ),
+          ),
         );
       dispatch(setCollections(collections));
     }

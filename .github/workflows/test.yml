@@ -8,24 +8,24 @@ on:
 
 jobs:
   test:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
-    - uses: actions/checkout@v4
-    - uses: apple-actions/import-codesign-certs@v3
-      with: 
-        p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
-        p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
-    - uses: actions/cache@v4
-      id: cache
-      with:
-        path: .build
-        key: ${{ runner.os }}-spm-${{ hashFiles('Fomalhaut2.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
-        restore-keys: |
-          ${{ runner.os }}-spm-
-    - name: resolve packages
-      run: xcodebuild -resolvePackageDependencies -clonedSourcePackagesDirPath .build
-      if: steps.cache.outputs.cache-hit != 'true'
-    - name: test
-      run: |
-        cp Fomalhaut2Tests/fixture/empty.zip Fomalhaut2/assets.zip
-        set -o pipefail && xcodebuild -target Fomalhaut2Tests -scheme Fomalhaut2 -clonedSourcePackagesDirPath .build clean test | xcpretty
+      - uses: actions/checkout@v6
+      - uses: apple-actions/import-codesign-certs@v7
+        with:
+          p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
+          p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+      - uses: actions/cache@v5
+        id: cache
+        with:
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('Fomalhaut2.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+      - name: resolve packages
+        run: xcodebuild -resolvePackageDependencies -clonedSourcePackagesDirPath .build
+        if: steps.cache.outputs.cache-hit != 'true'
+      - name: test
+        run: |
+          cp Fomalhaut2Tests/fixture/empty.zip Fomalhaut2/assets.zip
+          set -o pipefail && xcodebuild -target Fomalhaut2Tests -scheme Fomalhaut2 -clonedSourcePackagesDirPath .build clean test | xcpretty

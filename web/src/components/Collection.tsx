@@ -17,7 +17,7 @@ type Props = {
 const CollectionPage: React.FunctionComponent<Props> = (props: Props) => {
   const { dispatch, state } = useContext(StateContext);
   const collection: Collection | undefined = state.collections.find(
-    (collection) => collection.id === props.id
+    (collection) => collection.id === props.id,
   );
   const navigate = useNavigate();
   useEffect(() => {
@@ -27,9 +27,8 @@ const CollectionPage: React.FunctionComponent<Props> = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection]);
   const books: Book[] =
-    collection?.bookIds.flatMap(
-      (bookId) => state.books.find((book) => book.id === bookId) ?? []
-    ) ?? [];
+    collection?.bookIds.flatMap((bookId) => state.books.find((book) => book.id === bookId) ?? []) ??
+    [];
 
   return (
     <Library

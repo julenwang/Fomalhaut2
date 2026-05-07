@@ -17,7 +17,7 @@ export class Book {
     readCount: number,
     like: boolean,
     isRightToLeft: boolean,
-    createdAt: Date
+    createdAt: Date,
   ) {
     this.id = id;
     this.name = name;
