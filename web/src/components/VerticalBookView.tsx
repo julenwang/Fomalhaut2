@@ -63,29 +63,31 @@ const Page = (
   );
 };
 
-const pages = (
-  currentPageIndex: number,
-  book: Book,
-  history: History,
-  refs: RefObject<HTMLElement[]>,
-  onPreviousPage: () => void,
-  onNextPage: () => void,
+const Pages = (
+  props: Readonly<{
+    currentPageIndex: number;
+    book: Book;
+    history: History;
+    refs: RefObject<HTMLElement[]>;
+    onPreviousPage: () => void;
+    onNextPage: () => void;
+  }>,
 ) => {
   const onClick = (e: React.MouseEvent) => {
     if (e.shiftKey) {
-      onPreviousPage();
+      props.onPreviousPage();
     } else {
-      onNextPage();
+      props.onNextPage();
     }
   };
-  return [...Array(book.pageCount).keys()].map((i: number) => (
+  return [...Array(props.book.pageCount).keys()].map((i: number) => (
     <Page
       key={i}
       index={i}
-      book={book}
-      history={history}
-      refs={refs}
-      loading={Math.abs(currentPageIndex - i) <= 1 ? "eager" : "lazy"}
+      book={props.book}
+      history={props.history}
+      refs={props.refs}
+      loading={Math.abs(props.currentPageIndex - i) <= 1 ? "eager" : "lazy"}
       onClick={onClick}
     />
   ));
@@ -111,7 +113,14 @@ const VerticalBookView = (props: Props) => {
 
   return (
     <Box sx={{ mx: "auto" }}>
-      {pages(props.pageIndex, props.book, history, refs, props.onPreviousPage, props.onNextPage)}
+      <Pages
+        currentPageIndex={props.pageIndex}
+        book={props.book}
+        history={history}
+        refs={refs}
+        onPreviousPage={props.onPreviousPage}
+        onNextPage={props.onNextPage}
+      />
       <Box
         sx={{
           display: "flex",
