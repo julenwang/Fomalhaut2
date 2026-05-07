@@ -33,7 +33,7 @@ const Library: React.FunctionComponent<Props> = (props: Props) => {
     <Layout id={props.id}>
       <title>{`${props.title} - Fomalhaut2`}</title>
       <Container maxWidth="md">
-        <Box my={4}>
+        <Box sx={{ my: 4 }}>
           <Typography variant="h4" component="h1" gutterBottom>
             {props.title} {props.books.length > 0 && `(${props.books.length})`}
           </Typography>
@@ -42,12 +42,12 @@ const Library: React.FunctionComponent<Props> = (props: Props) => {
       <Container maxWidth="md">
         <Grid container>
           {books.map((book: Book) => (
-            <Grid key={book.id} size={{xs: 6, sm: 4, md: 3}}>
+            <Grid key={book.id} size={{ xs: 6, sm: 4, md: 3 }}>
               <Cover book={book} />
             </Grid>
           ))}
         </Grid>
-        <Box display="flex" justifyContent="center" pt={4} pb={4}>
+        <Box sx={{ display: "flex", justifyContent: "center", pt: 4, pb: 4 }}>
           <Pagination
             count={pageCount}
             page={props.page ?? 1}

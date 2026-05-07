@@ -26,11 +26,7 @@ import { useTheme } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import {
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "rocon/react";
 import { message } from "../message.ts";
 import {
@@ -81,10 +77,10 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <>
-      <Box flexGrow={1}>
+      <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" id="appbar">
           <Toolbar sx={{ justifyContent: "space-between" }}>
-            <Box flex={1}>
+            <Box sx={{ flex: 1 }}>
               <IconButton
                 edge="start"
                 sx={{ marginRight: theme.spacing(2) }}
@@ -96,7 +92,7 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
               </IconButton>
             </Box>
             <Typography variant="h6">{props.title ?? "Fomalhaut2"}</Typography>
-            <Box display="flex" flex={1} justifyContent="flex-end">
+            <Box sx={{ display: "flex", flex: 1, justifyContent: "flex-end" }}>
               <Tooltip title={message.settings}>
                 <IconButton
                   size="large"
@@ -121,10 +117,12 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
           onClose={() => setOpenLeftDrawer(false)}
         >
           <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="flex-end"
-            px={1}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              px: 1,
+            }}
           >
             <IconButton onClick={handleLeftDrawerClose}>
               <ChevronLeftIcon />

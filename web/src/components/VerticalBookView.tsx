@@ -3,7 +3,13 @@
 
 import Box from "@mui/material/Box";
 import type { History } from "history";
-import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from "react";
 import { useInView } from "react-intersection-observer";
 import { useHistory } from "rocon/react";
 import type { Book } from "../domain/book.ts";
@@ -50,14 +56,15 @@ const Page = (
       ref={setRefs}
       component="img"
       loading={props.loading}
-      my={1}
-      mx="auto"
-      display="block"
-      width="100%"
-      maxWidth="720px"
-      minHeight="200px"
       src={`/images/books/${props.book.id}/pages/${props.index}`}
       onClick={props.onClick}
+      sx={{
+        display: "block",
+        mx: "auto",
+        my: 1,
+        minHeight: "200px",
+        maxWidth: "720px",
+      }}
     />
   );
 };
@@ -96,7 +103,11 @@ const VerticalBookView = (props: Props) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (props.pageIndex !== 0 && refs.current && refs.current[props.pageIndex]) {
+    if (
+      props.pageIndex !== 0 &&
+      refs.current &&
+      refs.current[props.pageIndex]
+    ) {
       if (scrolled) {
         refs.current[props.pageIndex].scrollIntoView({ behavior: "smooth" });
       } else {
@@ -109,15 +120,24 @@ const VerticalBookView = (props: Props) => {
   }, [props.book, props.pageIndex, scrolled]);
 
   return (
-    <Box mx="auto">
-      {pages(props.pageIndex, props.book, history, refs, props.onPreviousPage, props.onNextPage)}
+    <Box sx={{ mx: "auto" }}>
+      {pages(
+        props.pageIndex,
+        props.book,
+        history,
+        refs,
+        props.onPreviousPage,
+        props.onNextPage
+      )}
       <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        width="100%"
-        height="100vh"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100vh",
+        }}
       >
         <NavigationPage
           book={props.book}
