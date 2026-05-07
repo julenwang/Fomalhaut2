@@ -3,7 +3,7 @@
 
 import Box from "@mui/material/Box";
 import type { History } from "history";
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import { useInView } from "react-intersection-observer";
 import { useHistory } from "rocon/react";
 import type { Book } from "../domain/book.ts";
@@ -39,12 +39,16 @@ const Page = (
       }
     },
   });
+  const setRef = useCallback(
+    (element: HTMLElement) => {
+      props.refs.current[props.index] = element;
+    },
+    [props.refs, props.index],
+  );
   return (
     <Box
       id={`${props.index}`}
-      ref={(element: HTMLElement) => {
-        props.refs.current[props.index] = element;
-      }}
+      ref={setRef}
       sx={{
         display: "flex",
         flexShrink: 0,
