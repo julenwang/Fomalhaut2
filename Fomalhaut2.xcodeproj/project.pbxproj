@@ -1231,7 +1231,7 @@
 			repositoryURL = "https://github.com/mtgto/SevenZip.swift";
 			requirement = {
 				kind = revision;
-				revision = 271e15c126e1601b54e218574574e2499562a9fd;
+				revision = 1217e868dcc622646591833c75acd7a61559dda5;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
