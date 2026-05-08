@@ -239,7 +239,7 @@ class FilterListViewController: NSViewController, NSOutlineViewDataSource, NSOut
     _ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?,
     proposedChildIndex index: Int
   ) -> NSDragOperation {
-    if let _ = item as? Collection {
+    if item as? Collection != nil {
       if info.draggingSource is NSCollectionView || info.draggingSource is NSTableView {
         if let dropFiles = info.draggingPasteboard.readObjects(
           forClasses: [NSURL.self], options: [.urlReadingFileURLsOnly: 1]), !dropFiles.isEmpty
@@ -385,7 +385,7 @@ class FilterListViewController: NSViewController, NSOutlineViewDataSource, NSOut
 
   // Need for drag'n'drop reorder collections
   func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-    if let _ = item as? String {
+    if item as? String != nil {
       return 20
     } else {
       return 24

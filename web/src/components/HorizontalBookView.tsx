@@ -2,13 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import Box from "@mui/material/Box";
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type RefObject,
-} from "react";
+import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import { useInView } from "react-intersection-observer";
 import type { Book } from "../domain/book.ts";
 import NavigationPage from "./NavigationPage.tsx";
@@ -36,10 +30,7 @@ const Page = (
   const { ref } = useInView({
     onChange: (inView) => {
       if (inView) {
-        sessionStorage.setItem(
-          `net.mtgto.Fomalhaut2.page.${props.book.id}`,
-          String(props.index),
-        );
+        sessionStorage.setItem(`net.mtgto.Fomalhaut2.page.${props.book.id}`, String(props.index));
       }
     },
   });
@@ -131,11 +122,7 @@ const HorizontalBookView = (props: Props) => {
   );
 
   useEffect(() => {
-    if (
-      props.pageIndex !== 0 &&
-      refs.current &&
-      refs.current[props.pageIndex]
-    ) {
+    if (props.pageIndex !== 0 && refs.current && refs.current[props.pageIndex]) {
       if (scrolled) {
         refs.current[props.pageIndex].scrollIntoView({ behavior: "smooth" });
       } else {

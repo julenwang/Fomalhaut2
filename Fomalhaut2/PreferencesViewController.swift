@@ -12,7 +12,7 @@ class PreferencesViewController: NSViewController {
     super.viewDidLoad()
     // Do view setup here.
     self.pageOrderPopupButton.selectItem(at: Preferences.standard.defaultPageOrder == .rtl ? 0 : 1)
-    self.scrollDirectionPopupButton.selectItem(at:  Preferences.standard.isReverseScrollDirection ? 1 : 0)
+    self.scrollDirectionPopupButton.selectItem(at: Preferences.standard.isReverseScrollDirection ? 1 : 0)
   }
 
   @IBAction func selectPageOrder(_ sender: Any) {

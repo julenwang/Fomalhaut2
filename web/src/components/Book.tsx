@@ -1,12 +1,7 @@
 // SPDX-FileCopyrightText: 2020 mtgto <hogerappa@gmail.com>
 // SPDX-License-Identifier: GPL-3.0-only
 
-import React, {
-  useContext,
-  useState,
-  useTransition,
-  useDebugValue,
-} from "react";
+import React, { useContext, useState, useTransition, useDebugValue } from "react";
 import { useNavigate } from "rocon/react";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -41,9 +36,7 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
   const [addToCollectionOpen, setAddToCollectionOpen] = useState(false);
   const [reading, setReading] = useState(true);
   const [pageIndex, setPageIndex] = useState(() => {
-    const page = parseInt(
-      sessionStorage.getItem(`net.mtgto.Fomalhaut2.page.${props.id}`) ?? "",
-    );
+    const page = parseInt(sessionStorage.getItem(`net.mtgto.Fomalhaut2.page.${props.id}`) ?? "");
     return isNaN(page) ? 0 : page;
   });
   useDebugValue(pageIndex);
@@ -51,12 +44,8 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
   const { state, dispatch } = useContext(StateContext);
   const navigate = useNavigate();
   const theme = useTheme();
-  const book: Book | undefined = state.books.find(
-    (book) => book.id === props.id,
-  );
-  const currentBookIndex = state.selectedBookIds.findIndex(
-    (bookId) => props.id === bookId,
-  );
+  const book: Book | undefined = state.books.find((book) => book.id === props.id);
+  const currentBookIndex = state.selectedBookIds.findIndex((bookId) => props.id === bookId);
   const nextBookId: string | undefined =
     state.selectedBookIds.length > currentBookIndex + 1
       ? state.selectedBookIds[currentBookIndex + 1]
@@ -71,9 +60,7 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     }
   };
   const prevBookId: string | undefined =
-    currentBookIndex > 0
-      ? state.selectedBookIds[currentBookIndex - 1]
-      : undefined;
+    currentBookIndex > 0 ? state.selectedBookIds[currentBookIndex - 1] : undefined;
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -96,12 +83,9 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     startToggleLike(async () => {
       if (book) {
         try {
-          await fetch(
-            `/api/v1/books/${book.id}/${book.like ? "dislike" : "like"}`,
-            {
-              method: "POST",
-            },
-          );
+          await fetch(`/api/v1/books/${book.id}/${book.like ? "dislike" : "like"}`, {
+            method: "POST",
+          });
           dispatch(toggleLike(book.id));
         } catch (error) {
           console.error(error);
@@ -192,12 +176,7 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
     return (
       <Layout title={book.name}>
         <title>{`${book?.name ?? "Loading…"} - Fomalhaut2`}</title>
-        <Container
-          maxWidth={false}
-          disableGutters
-          tabIndex={0}
-          onKeyDown={handleKeyDown}
-        >
+        <Container maxWidth={false} disableGutters tabIndex={0} onKeyDown={handleKeyDown}>
           {state.viewMode === "left" || state.viewMode === "right" ? (
             <HorizontalBookView
               pageIndex={pageIndex}
@@ -248,9 +227,7 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
               icon={book?.like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
               slotProps={{
                 tooltip: {
-                  title: book?.like
-                    ? message.commands.dislike
-                    : message.commands.like,
+                  title: book?.like ? message.commands.dislike : message.commands.like,
                 },
                 fab: { disabled: calling },
               }}

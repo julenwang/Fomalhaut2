@@ -27,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       SpreadPageViewController.showPageNumberKey: true,
       BookViewStyle.userDefaultsKey: BookViewStyle.defaultValue.rawValue,
       SpreadPageViewController.keepFirstImageWindowSizeKey: false,
-      ScrollDirection.userDefaultsKey: false, // Prefer System Setting
+      ScrollDirection.userDefaultsKey: false,  // Prefer System Setting
     ])
   }
 
