@@ -16,14 +16,18 @@ export const collectionRoutes = Path()
   .any("id")
   .anyRoute.attach(Search("page", { optional: true }))
   .action(({ id, page }) => {
-    const collectionPage = <CollectionPage id={id} page={page ? Number(page) : undefined} />;
+    const collectionPage = (
+      <CollectionPage id={id} page={page ? Number(page) : undefined} />
+    );
     return collectionPage;
   });
 export const filterRoutes = Path()
   .any("id")
   .anyRoute.attach(Search("page", { optional: true }))
   .action(({ id, page }) => {
-    const filterPage = <FilterPage id={id} page={page ? Number(page) : undefined} />;
+    const filterPage = (
+      <FilterPage id={id} page={page ? Number(page) : undefined} />
+    );
     return filterPage;
   });
 export const topLevelRoutes = Path()

@@ -2,10 +2,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import Box from "@mui/material/Box";
-import type { History } from "history";
 import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import { useInView } from "react-intersection-observer";
-import { useHistory } from "rocon/react";
 import type { Book } from "../domain/book.ts";
 import NavigationPage from "./NavigationPage.tsx";
 
@@ -23,7 +21,6 @@ const Page = (
   props: Readonly<{
     index: number;
     book: Book;
-    history: History;
     refs: RefObject<HTMLElement[]>;
     loading: HTMLImageElement["loading"];
     onClick: (e: React.MouseEvent) => void;
@@ -32,9 +29,7 @@ const Page = (
   const { ref: inViewRef } = useInView({
     onChange: (inView) => {
       if (inView) {
-        props.history.replace({
-          hash: props.index === 0 ? "" : `${props.index}`,
-        });
+        sessionStorage.setItem(`net.mtgto.Fomalhaut2.page.${props.book.id}`, String(props.index));
       }
     },
   });
@@ -67,7 +62,6 @@ const Pages = (
   props: Readonly<{
     currentPageIndex: number;
     book: Book;
-    history: History;
     refs: RefObject<HTMLElement[]>;
     onPreviousPage: () => void;
     onNextPage: () => void;
@@ -85,7 +79,6 @@ const Pages = (
       key={i}
       index={i}
       book={props.book}
-      history={props.history}
       refs={props.refs}
       loading={Math.abs(props.currentPageIndex - i) <= 1 ? "eager" : "lazy"}
       onClick={onClick}
@@ -95,7 +88,6 @@ const Pages = (
 
 const VerticalBookView = (props: Props) => {
   const refs = useRef<HTMLElement[]>([]);
-  const history = useHistory();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -116,7 +108,6 @@ const VerticalBookView = (props: Props) => {
       <Pages
         currentPageIndex={props.pageIndex}
         book={props.book}
-        history={history}
         refs={refs}
         onPreviousPage={props.onPreviousPage}
         onNextPage={props.onNextPage}
