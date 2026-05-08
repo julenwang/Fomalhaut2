@@ -169,6 +169,20 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
       } else {
         handleNextPage();
       }
+    } else if (
+      (state.viewMode === "right" && e.code === "ArrowRight") ||
+      (state.viewMode === "left" && e.code === "ArrowLeft") ||
+      (state.viewMode === "vertical" && e.code === "ArrowDown")
+    ) {
+      e.preventDefault();
+      handleNextPage();
+    } else if (
+      (state.viewMode === "right" && e.code === "ArrowLeft") ||
+      (state.viewMode === "left" && e.code === "ArrowRight") ||
+      (state.viewMode === "vertical" && e.code === "ArrowUp")
+    ) {
+      e.preventDefault();
+      handlePreviousPage();
     }
   };
 
