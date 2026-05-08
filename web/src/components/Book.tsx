@@ -41,7 +41,9 @@ const BookPage: React.FunctionComponent<Props> = (props: Props) => {
   const [addToCollectionOpen, setAddToCollectionOpen] = useState(false);
   const [reading, setReading] = useState(true);
   const [pageIndex, setPageIndex] = useState(() => {
-    const page = parseInt(sessionStorage.getItem(`net.mtgto.Fomalhaut2.page.${props.id}`) ?? "");
+    const page = parseInt(
+      sessionStorage.getItem(`net.mtgto.Fomalhaut2.page.${props.id}`) ?? "",
+    );
     return isNaN(page) ? 0 : page;
   });
   useDebugValue(pageIndex);
