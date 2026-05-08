@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## v2.0.1 (2026-05-08)
+
+### Added
+
+- Add arrow key navigation based on view mode in web
+
+### Changed
+
+- Fix keyboard navigation to NavigationPage in web
+- Store current page in sessionStorage instead of URL to avoid polluting browser history
+- Fix AddBookToCollection with wrong collection index
+- Update web packages
+- Update swift-nio to v2.99.0
+- Update SevenZip to v0.2.6
+- Update Unrar to v0.5.3
+- Update ZipFoundation to v0.9.20
+
 ## v2.0.0 (2025-10-05)
 
 ### Added
@@ -14,7 +31,7 @@
 - Update Unrar.swift to v0.5.1
 - Update SevenZip.swift to v0.2.3
 
-### 
+###
 
 ## v1.9.0 (2025-03-16)
 
