@@ -36,6 +36,7 @@
 				<string>com.pkware.zip-archive</string>
 				<string>public.zip-archive</string>
 				<string>public.data</string>
+				<string>org.idpf.epub-container</string>
 			</array>
 			<key>QLSupportsSearchableItems</key>
 			<true/>
