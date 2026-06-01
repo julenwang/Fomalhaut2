@@ -191,6 +191,10 @@ class PreviewViewController: NSViewController, QLPreviewingController {
   }
 
   func preparePreviewOfFile(at url: URL, completionHandler handler: @escaping (Error?) -> Void) {
+    if let screenSize = NSScreen.main?.frame.size { 
+      self.preferredContentSize = NSSize(width: 4000, height: 3000)
+    }
+
     // Add the supported content types to the QLSupportedContentTypes array in the Info.plist of the extension.
 
     // Perform any setup necessary in order to prepare the view.
