@@ -44,7 +44,8 @@ class PreviewViewController: NSViewController, QLPreviewingController {
     self.secondImageView.notificationName = secondImageViewMouseUpNotificationName
 
     NotificationCenter.default.rx.notification(firstImageViewMouseUpNotificationName, object: nil)
-      .subscribe(onNext: { notification in
+      .subscribe(onNext: { [weak self] notification in
+        guard let self = self else { return }
         let shiftPressed = notification.userInfo?[BookImageView.shiftPressed] as? Bool ?? false
         if self.secondImageView.isHidden && !shiftPressed {
           self.forwardPage()
@@ -54,7 +55,8 @@ class PreviewViewController: NSViewController, QLPreviewingController {
       })
       .disposed(by: self.disposeBag)
     NotificationCenter.default.rx.notification(secondImageViewMouseUpNotificationName, object: nil)
-      .subscribe(onNext: { notification in
+      .subscribe(onNext: { [weak self] notification in
+        guard let self = self else { return }
         let shiftPressed = notification.userInfo?[BookImageView.shiftPressed] as? Bool ?? false
         if shiftPressed {
           self.backwardPage()
@@ -70,10 +72,11 @@ class PreviewViewController: NSViewController, QLPreviewingController {
       start: self.currentPageIndex.value,
       count: min(self.pageCount.value - self.currentPageIndex.value, 2)
     )
-    .map { pageIndex in
-      self.loadImage(pageIndex: pageIndex, archiver: archiver)
+    .concatMap { [weak self] pageIndex -> Observable<NSImage> in
+      // 使用 concatMap 完美替代之前的 map + concat，并安全地处理 weak self
+      guard let self = self else { return Observable.empty() }
+      return self.loadImage(pageIndex: pageIndex, archiver: archiver)
     }
-    .concat()
     .buffer(
       timeSpan: .never, count: pageIndex == 0 && !self.shiftedSignlePage ? 1 : 2,
       scheduler: MainScheduler.instance
@@ -209,18 +212,20 @@ class PreviewViewController: NSViewController, QLPreviewingController {
       return
     }
     self.archiver = archiver
-    let imageLoaded = self.currentPageIndex.flatMapLatest { (currentPageIndex) in
-      self.fetchImages(pageIndex: currentPageIndex, archiver: archiver)
+    let imageLoaded = self.currentPageIndex.flatMapLatest { [weak self] (currentPageIndex) -> Observable<LoadedImage> in
+      guard let self = self else { return Observable.empty() }
+      return self.fetchImages(pageIndex: currentPageIndex, archiver: archiver)
     }
     imageLoaded
       .observe(on: MainScheduler.instance)
       .subscribe(
-        onNext: { (loadedImage) in
+        onNext: { [weak self] (loadedImage) in
+          guard let self = self else { return }
           if loadedImage.preload || loadedImage.images.count == 0 {
             return
           }
           let images = loadedImage.images
-          let firstImage: NSImage = images.first!  // TODO: It might be nil if all files are broken
+          let firstImage: NSImage = images.first!
           let secondImage: NSImage? = images.count >= 2 ? images.last : nil
 
           self.firstImageView.image = firstImage
